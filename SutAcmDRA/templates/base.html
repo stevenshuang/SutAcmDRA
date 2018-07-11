@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}SUT ACM{% endblock %}</title>
+        <!--引入css文件-->
+                <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+        <link rel="stylesheet" href="../static/css/bootstrap.css" />
+        <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/vue.min.js"></script>
+    </head>
+    <body>
+        <nav id="navbar-example" class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".bs-js-navbar-scrollspy">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#home" class="navbar-brand nav-title"><img src="../static/images/sut.jpg" style="display: inline-block;width: 30px; height: 30px; border: solid 2px black; border-radius: 50%;" alt="SUT logo" />SutAcmDRA</a>
+                </div>
+                <div class="collapse navbar-collapse bs-js-navbar-scrollspy">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <form class="navbar-form " role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="search_user" placeholder="姓名" />
+                                    <input type="hidden" class="btn btn-default" value="搜索" />
+                                </div>
+                            </form>
+                        </li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me(本站站长, 哼)</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--增加判断, 是否登录, 更改显示-->
+                        <!--
+                        <li class="cative"><a href="#"><span class="glyphicon glyphicon-user"></span>注册</a></li>
+                        <li class="cative"><a href="#"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
+                        -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="../static/images/15040521.png" alt="User Avatar" style="width: 30px; height: 30px; border: solie 2px black; border-radius: 50%;" />
+                                <b class="cart"></b>
+                            </a>
+                            <ul id="mouse-hover" class="dropdown-menu">
+                                <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Your Profile</a></li>
+                                <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;登出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+	    </nav>
+
+        <div id="vue-app" class="container">
+            {% block headline %}
+            <div class="row col-md-3 col-md-offset-4">
+                <h2>Sut Acm 训练记录</h2>
+            </div>
+            {% endblock %}
+            {% block content %}
+            <div class="list">
+                <table class="table table-bordered">
+                    <caption>以<strong><a href="http://acm.hdu.edu.cn">HDOJ</a></strong>为主</caption>
+                    <tr class="btn-primary">
+                        <th class="text-center">用户名</th>
+                        <th class="text-center">昵称</th>
+                        <th class="text-center">HDOJ 总数</th>
+                        <th class="text-center">分布</th>
+                    </tr>
+                    <!--先添加一组试试-->
+                    <!--for user in users.items(), 还有当前用户凸显-->
+                    <tr>
+                        <td class="text-center"><a href="#" alt="个人主页">935809546</a></td>
+                        <td class="text-center">Coco</td>
+                        <td class="text-center">10</td>
+                        <td class="text-center">
+                            <div class="github">
+                                <img src="../static/images/sut.jpg" style="width: 80px; height: 80px"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="danger">
+                        <td class="text-center">935809546</td>
+                        <td class="text-center">Coco</td>
+                        <td class="text-center">10</td>
+                        <td class="text-center">
+                            <div class="github">
+                                <img src="../static/images/sut.jpg" style="width: 80px; height: 80px"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">935809546</td>
+                        <td class="text-center">Coco</td>
+                        <td class="text-center">10</td>
+                        <td class="text-center">
+                            <div class="github">
+                                <img src="../static/images/sut.jpg" style="width: 80px; height: 80px"/>
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+            </div>
+            {% endblock %}
+        </div>
+        <script src="../static/js/script.js"></script>
+    </body>
+</html>
