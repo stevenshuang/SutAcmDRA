@@ -11,6 +11,8 @@ requests = "*"
 flask = "*"
 pymongo = "*"
 pymysql = "*"
+pillow = "*"
+httpie = "*"
 
 [requires]
 python_version = "3.5"
