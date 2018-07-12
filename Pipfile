@@ -13,6 +13,7 @@ pymongo = "*"
 pymysql = "*"
 pillow = "*"
 httpie = "*"
+flask-pymongo = "*"
 
 [requires]
 python_version = "3.5"
