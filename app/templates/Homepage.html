@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+<title>{% block title %} 个人主页 {% endblock %}</title>
+
+<!--想要github的形式-->
+{% block headline %}
+<div class="row">
+    <h2 class="col-md-12">个人主页</h2>
+</div>
+<br /><br /><br />
+
+{% endblock %}
+
+{% block content %}
+<!--包含在app中-->
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <img src="../static/images/15040521.png" style="width: 200px; height: 200px; border: solid 2px #D3D3D3;" />
+        </div>
+        <div>
+            <h2>{[ nick_name ]}</h2>
+            <p>{[ id ]}</p>
+            <hr style="border: solid 1px #D3D3D3; width: 50%; margin-left:0;" />
+            <p>骚年留下QQ</p>
+        </div>
+    </div>
+    <div class="col-md-8" style="border: solid 2px #D3D3D3;margin">
+        {% include './panel.html' %}
+    </div>
+</div>
+{% endblock %}
+<script>
+    // 请求用户的数据
+    new Vue({
+            el: "#app",
+            data: {
+                id: "",
+                nick_name: "",
+                date_ps: "",    // 做题的分布数据
+            },
+            delimiters: ['{[', ']}'],
+            mounted: function(){
+                var self = this;
+                $.ajax({
+                       type: "GET",
+                       url: "http://localhost:5000/data",
+                       success: function(data){
+                            self.id = data.id;
+                            self.nick_name = data.nick_name;
+                       },
+                       error: function(err){
+                            console.log(JSON.stringify(err));
+                       }
+                });
+            },
+        });
+</script>
