@@ -50,12 +50,5 @@ class GenerateImage(object):
     
     def get_image(self):
         self.image_data()
-        with open('./images/{}.png'.format(self.has_code_str), 'wb') as fp:
+        with open('./static/users/{}.png'.format(self.has_code_str), 'wb') as fp:
             self.image.save(fp, 'PNG')
-
-
-if __name__ == '__main__':
-    for index in range(2, 4):
-        image = GenerateImage('1504052{}'.format(index))
-        image.get_image()
-
