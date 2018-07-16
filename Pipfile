@@ -23,6 +23,7 @@ sqlalchemy-migrate = "*"
 flask-mail = "*"
 flask-sqlalchemy = "*"
 flask-script = "*"
+flask-migrate = "*"
 
 [requires]
 python_version = "3.6"
