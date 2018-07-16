@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Sign in</title>
+        <link href="../static/css/bootstrap.css" rel="stylesheet" />
+        <link href="../static/css/style.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+        <script src="../static/js/jquery.min.js"></script>
+        <script src="../static/js/bootstrap.js"></script>
+        <script src="../static/js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app" class="container my-containder">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 row-content">
+                    <img src="../static/images/sut.jpg" style="width: 50px; height: 50xp; border-radius: 50%; border: solid 2px #D3D3D3;"/>
+                    <h3>Sign in System</h3>
+                </div>
+            </div>
+            <div class="row">
+                <!--登录框-->
+                <div class="col-md-4 col-md-offset-4 row-content-login">
+                    <form role="form">
+                        <div class="form-group form-div">
+                            <label for="name"><strong>HDOJ Account</strong></label>
+                            <input type="text" class="form-control" id="username" autofocus="autofocus">
+                        </div>
+                        <div class="form-group form-div">
+                            <label for="password"><strong>Password</strong></label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group form-div">
+                            <button type="submit" class="btn btn-default form-btn">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
