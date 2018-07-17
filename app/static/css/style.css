@@ -70,3 +70,8 @@ body {
     background-color: #269f30;
     color: #fff;
 }
+
+.content-td{
+    width: 308px;
+    height: 20px;
+}
