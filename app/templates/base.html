@@ -42,26 +42,26 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--增加判断, 是否登录, 更改显示-->
-                        <!--
-                        <li class="cative"><a href="#"><span class="glyphicon glyphicon-user"></span>注册</a></li>
-                        <li class="cative"><a href="#"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
-                        -->
+                        {% if current_user.is_authenticated %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../static/images/15040521.png" alt="User Avatar" style="width: 30px; height: 30px; border: solie 2px black; border-radius: 50%;" />
+                                <img src="/static/{{ current_user.photo_path }}" alt="User Avatar" style="width: 30px; height: 30px; border: solie 2px black; border-radius: 50%;" />
                                 <b class="cart"></b>
                             </a>
                             <ul id="mouse-hover" class="dropdown-menu">
-                                <li class="dropdown-item"><a><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Coco</a></li>
-                                <li class="dropdown-item"><a href="/homepage"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Your Profile</a></li>
-                                <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;登出</a></li>
+                                <li class="dropdown-item"><a><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ current_user.hdoj_username }}</a></li>
+                                <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Your Profile</a></li>
+                                <li class="dropdown-item"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;登出</a></li>
                             </ul>
                         </li>
+                        {% else %}
+                        <li class="cative"><a href="#"><span class="glyphicon glyphicon-user"></span>注册</a></li>
+                        <li class="cative"><a href="/login"><span class="glyphicon glyphicon-log-in"></span>登录</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
 	    </nav>
-
         <div id="app" class="container base-container">
             <div >
                 <!--用于在那乱转, 提示用户用pc端访问-->
@@ -69,7 +69,7 @@
             </div>
             {% block headline %}
             <div class="row">
-                <h2 class="col-md-8 col-md-offset-4">Sut Acm 训练记录{[ id ]}+{[ nick_name ]}</h2>
+                <h2 class="col-md-8 col-md-offset-4">Sut Acm 训练记录 {{ user.hdoj_username }}</h2>
             </div>
             {% endblock %}
             {% block content %}
@@ -80,7 +80,7 @@
                         <th class="text-center">用户名</th>
                         <th class="text-center">昵称</th>
                         <th class="text-center">HDOJ 总数</th>
-                        <th class="text-center">分布</th>
+                        <th class="text-center">五天分布</th>
                     </tr>
                     <!--先添加一组试试-->
                     <!--for user in users.items(), 还有当前用户凸显-->
@@ -88,19 +88,21 @@
                         <td class="text-center"><a href="/homepage" alt="个人主页">935809546</a></td>
                         <td class="text-center">Coco</td>
                         <td class="text-center">10</td>
-                        <td class="text-center">
-                            {% include './panel.html' %}
+                        <td class="text-center content-td">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width=200 height=20>
+                                <g transform="translate(0, 0)">
+                                    <rect x="20" y="0" width="10" height="10" style="fill:#197013;">
+                                        <title>2018-07-12 solve 10</title>
+                                    </rect>
+                                </g>
+                                <g transform="translate(13, 0)">
+                                    <rect x="19" y="0" width="10" height="10" style="fill:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9">
+                                    <title>2018-07-13 solve 9</title>
+                                    </rect>
+                                </g>
+                            </svg>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-center"><a href="/homepage" alt="个人主页">935809546</a></td>
-                        <td class="text-center">Coco</td>
-                        <td class="text-center">10</td>
-                        <td class="text-center">
-                            {% include './panel.html' %}
-                        </td>
-                    </tr>
-
             </table>
             </div>
             {% endblock %}
