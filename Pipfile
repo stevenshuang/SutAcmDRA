@@ -24,6 +24,8 @@ flask-mail = "*"
 flask-sqlalchemy = "*"
 flask-script = "*"
 flask-migrate = "*"
+flask-wtf = "*"
+flask-httpauth = "*"
 
 [requires]
 python_version = "3.6"
