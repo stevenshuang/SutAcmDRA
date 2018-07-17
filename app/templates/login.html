@@ -22,14 +22,14 @@
             <div class="row">
                 <!--登录框-->
                 <div class="col-md-4 col-md-offset-4 row-content-login">
-                    <form role="form">
+                    <form action="/login" method="post" role="form">
                         <div class="form-group form-div">
                             <label for="name"><strong>HDOJ Account</strong></label>
-                            <input type="text" class="form-control" id="username" autofocus="autofocus">
+                            <input type="text" class="form-control" id="username" name="username" autofocus="autofocus" />
                         </div>
                         <div class="form-group form-div">
                             <label for="password"><strong>Password</strong></label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" name="password" />
                         </div>
                         <div class="form-group form-div">
                             <button type="submit" class="btn btn-default form-btn">Sign in</button>
