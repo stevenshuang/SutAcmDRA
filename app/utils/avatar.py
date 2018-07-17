@@ -5,6 +5,7 @@
 from PIL import Image, ImageDraw
 from random import randint
 from hashlib import md5
+from .. import BASE_DIR
 
 
 GRID_SIZE = 9
@@ -50,5 +51,7 @@ class GenerateImage(object):
     
     def get_image(self):
         self.image_data()
-        with open('./static/users/{}.png'.format(self.has_code_str), 'wb') as fp:
+        with open(BASE_DIR+'/static/users/{}.png'.format(self.has_code_str), 'wb') as fp:
             self.image.save(fp, 'PNG')
+
+GenerateImage('155555').get_image()
