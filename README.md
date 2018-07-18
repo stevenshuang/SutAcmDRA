@@ -10,5 +10,7 @@
 * 一表格的形式, 直观的显示做题情况
 * 仿github的contributions做了做题的时间分布
 
+## 截图
+* ![api-date](./images/api-data.png)
 
 ## 有建议, 问题或者想法欢迎issue, PR
