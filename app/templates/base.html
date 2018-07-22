@@ -37,8 +37,8 @@
                                 </div>
                             </form>
                         </li>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me(本站站长, 哼)</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Me(本站站长, 哼)</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--增加判断, 是否登录, 更改显示-->
@@ -63,10 +63,7 @@
             </div>
 	    </nav>
         <div id="app" class="container base-container">
-            <div >
-                <!--用于在那乱转, 提示用户用pc端访问-->
-                <!--现在也不击倒写啥-->
-            </div>
+            {% if current_user.is_authenticated %}
             {% block headline %}
             <div class="row">
                 <h2 class="col-md-8 col-md-offset-4">Sut Acm 训练记录 {{ user.hdoj_username }}</h2>
@@ -106,6 +103,12 @@
             </table>
             </div>
             {% endblock %}
+            {% else %}
+            <div>
+                <!--没有登录的显示-->
+                <p>请登录</p>
+            </div>
+            {% endif %}
         </div>
         <div class="footer">
             <a href="https://github.com/stevenshuang"><i class="iconfont icon-Github">&#xea0a;</i>Coco</a>
