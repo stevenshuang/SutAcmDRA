@@ -26,6 +26,8 @@ flask-script = "*"
 flask-migrate = "*"
 flask-wtf = "*"
 flask-httpauth = "*"
+itsdangerous = "*"
+redis = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f027de156e29e8414c280a926b7749bace251914fae8a1bb87e8425367545f47"
+            "sha256": "c0e3f610cd33ad0f9f4d714e186754765d8c24629a6947cc3453d37760d820fd"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -210,11 +210,11 @@
         },
         "flask-pymongo": {
             "hashes": [
-                "sha256:1843b4e94fa70a822d1401fd4505995d7a590d3c62fc04f84bb157f33b6a73cf",
-                "sha256:1d4d64ffef76dcd8e87c28d4c4af6832735ad6545247c49dbab8f4a3dd14b39e"
+                "sha256:52c68863fb6eb3b3ae9072800afc48f968cf24af22ad81e4a7830cf51aceee9d",
+                "sha256:6a02add52ac245064720c2bb8b02074b9a5a0d9498279510ea2a537512fd3fa5"
             ],
             "index": "pypi",
-            "version": "==2.0.0"
+            "version": "==2.0.1"
         },
         "flask-script": {
             "hashes": [
@@ -264,6 +264,7 @@
             "hashes": [
                 "sha256:cbb3fcf8d3e33df861709ecaf89d9e6629cff0a217bc2848f1b41cd30d360519"
             ],
+            "index": "pypi",
             "version": "==0.24"
         },
         "jinja2": {
