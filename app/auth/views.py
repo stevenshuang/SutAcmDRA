@@ -24,7 +24,7 @@ def login():
             logger.info('用户不存在')
         if user is not None and user.verify_password(passwd):
             login_user(user)
-            return redirect(request.args.get('next') or url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('main.index', ))
         flash('Invald Username Or Password')
 
 
