@@ -40,9 +40,9 @@ def create_app(config_name):
     db.init_app(app)
     from .main import main as main_blueprint
     from .auth import auth
-    from .api import api
+    from .api_1_0 import api
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth)
-    app.register_blueprint(api)
+    app.register_blueprint(api, url_prefix="/api/v1")
 
     return app
