@@ -7,6 +7,7 @@ from hashlib import md5
 
 from flask import jsonify
 from flask_login import UserMixin
+from flask_login import AnonymousUserMixin
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from pymongo import MongoClient
@@ -61,6 +62,10 @@ class User(db.Model, UserMixin):
         return jsonify(json_self)
 
 
+class AnonymousUser(AnonymousUserMixin):
+    pass
+
+
 @lm.user_loader
 def load_user(user_id):
     """用户回调函数"""
@@ -75,13 +80,13 @@ class DBManager(object):
     """
     
     def __init__(self):
-        self.__client = MongoClient('localhostd, 27017')
+        self.__client = MongoClient('localhost', 27017)
         self.__db = self.__client.SADRA
         self.__collection = self.__db.user
 
 
     def find_one(self, user_name):
         try:
-            return self.__collection.find_one({"user": user_name})
+            return self.__collection.find_one({"user": user_name}, {'_id': 0})
         except Exception as e:
             logger.info("访问的用户不存在")
