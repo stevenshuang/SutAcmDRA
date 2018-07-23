@@ -3,7 +3,6 @@
 
 
 from PIL import Image, ImageDraw
-from random import randint
 from hashlib import md5
 from .. import BASE_DIR
 
@@ -12,8 +11,8 @@ GRID_SIZE = 9
 BORDER = 10
 LENGTH = 110
 
-class GenerateImage(object):
 
+class GenerateImage(object):
     """生成avatar图像"""
 
     def __init__(self, _str, _bg_color="#fff"):
@@ -23,35 +22,37 @@ class GenerateImage(object):
         self.image = Image.new('RGB', (w, h), _bg_color)
         self.draw = ImageDraw.Draw(self.image)
         self.hash = int(md5(_str.encode('utf-8')).hexdigest(), 16)
-    
+
     def image_grid_color(self):
-        return (self.hash>>8 & 0xff, self.hash>>16&0xff, self.hash>>24&0xff)
+        return (self.hashi >> 8 & 0xff,
+                self.hash >> 16 & 0xff,
+                self.hash >> 24 & 0xff)
 
     def image_data(self):
         """生成那些位置图有颜色, 那些位置没有"""
         color = self.image_grid_color()
-        print (color)
         self.hash >> 16
-        x, y=0, 0
+        x, y = 0, 0
         for index_x in range(int((GRID_SIZE*BORDER)/2)):
             if self.hash & 1:
                 index_x = BORDER+(x*BORDER)
                 index_y = BORDER+(y*BORDER)
                 self.draw.rectangle(
-                        [index_x, index_y, index_x+BORDER, index_y+BORDER], fill=color)
+                        [index_x, index_y, index_x+BORDER, index_y+BORDER],
+                        fill=color)
                 # 对称的位置
                 index_x = LENGTH-index_x-BORDER
                 self.draw.rectangle(
-                        [index_x, index_y, index_x+BORDER, index_y+BORDER], fill=color)
+                        [index_x, index_y, index_x+BORDER, index_y+BORDER],
+                        fill=color)
             self.hash >>= 1
             y += 1
             if y == GRID_SIZE:
                 y = 0
-                x+=1
-    
+                x += 1
+
     def get_image(self):
         self.image_data()
-        with open(BASE_DIR+'/static/users/{}.png'.format(self.has_code_str), 'wb') as fp:
+        with open(BASE_DIR+'/static/users/{}.png'.format(self.has_code_str),
+                  'wb') as fp:
             self.image.save(fp, 'PNG')
-
-GenerateImage('155555').get_image()

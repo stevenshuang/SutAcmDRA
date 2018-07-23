@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-import os
 from app import create_app, db
 from flask_script import Manager, Shell
 from flask_migrate import Migrate, MigrateCommand
@@ -10,6 +9,7 @@ from flask_migrate import Migrate, MigrateCommand
 app = create_app('default')
 manager = Manager(app)
 migrate = Migrate(app, db)
+
 
 def make_shell_context():
     return {

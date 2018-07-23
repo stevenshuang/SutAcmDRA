@@ -3,7 +3,6 @@
 
 from datetime import datetime
 from flask import jsonify
-from flask_login import login_required
 from flask_login import current_user
 from . import api
 from ..models import User
@@ -19,9 +18,8 @@ def get_user_data():
     user_list = []
     for user_name in users_name:
         user_list.append(dbm.find_one(user_name))    # 只拿五条数据
-    user_list = sorted(user_list, key=lambda x:x['count'], reverse=True)
+    user_list = sorted(user_list, key=lambda x: x['count'], reverse=True)
     return jsonify({'users': user_list})
-
 
 
 @api.route('/user')
