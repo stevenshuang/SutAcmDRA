@@ -10,6 +10,8 @@
 * 一表格的形式, 直观的显示做题情况
 * 仿github的contributions做了做题的时间分布
 
+## 爬虫数据请见[hdoj爬虫](https://github.com/stevenshuang/spider/tree/master/hdoj)
+
 ## 截图
 * ![api-date](./images/api-data.png)
 
