@@ -3,6 +3,7 @@
 
 import json
 import logging
+from datetime import datetime, timedelta
 from hashlib import md5
 
 from flask import jsonify
@@ -12,9 +13,11 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from pymongo import MongoClient
 
-
 from app import db, lm, logger
 from config import BASE_DIR
+
+
+FORMATER = '%Y-%m-%d'
 
 
 class User(db.Model, UserMixin):
@@ -84,9 +87,26 @@ class DBManager(object):
         self.__db = self.__client.SADRA
         self.__collection = self.__db.user
 
-
+    
     def find_one(self, user_name):
         try:
-            return self.__collection.find_one({"user": user_name}, {'_id': 0})
+            data = self.__collection.find_one({"user": user_name}, {'_id': 0})
+            now = datetime.now()+timedelta(days=1)
+            days = [(now-timedelta(days=index)).strftime(FORMATER) \
+                    for index in range(1, 6)]
+            result = {}
+            for day in days:
+                if day not in data['date_ps'].keys():
+                    result[day] = []
+                else:
+                    result[day] = data['date_ps'][day]
+            data['date_ps'] = result
+            return data
         except Exception as e:
             logger.info("访问的用户不存在")
+
+    def find_one_info(self, username):
+        try:
+            return self.__collection.find_one({'user': username}, {'_id': 0})
+        except Exception as e:
+            logger.info('用户不存在')
