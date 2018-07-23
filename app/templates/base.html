@@ -38,7 +38,6 @@
                             </form>
                         </li>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/about">About Me(本站站长, 哼)</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--增加判断, 是否登录, 更改显示-->
@@ -50,7 +49,7 @@
                             </a>
                             <ul id="mouse-hover" class="dropdown-menu">
                                 <li class="dropdown-item"><a><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ current_user.hdoj_username }}</a></li>
-                                <li class="dropdown-item"><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Your Profile</a></li>
+                                <li class="dropdown-item"><a href="/homepage"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Your Homepage</a></li>
                                 <li class="dropdown-item"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;登出</a></li>
                             </ul>
                         </li>
@@ -66,7 +65,8 @@
             {% if current_user.is_authenticated %}
             {% block headline %}
             <div class="row">
-                <h2 class="col-md-8 col-md-offset-4">Sut Acm 训练记录 {{ user.hdoj_username }}</h2>
+                <h2 class="col-md-8 col-md-offset-4">Sut Acm 训练记录</h2>
+                <p>如果没有及时记录, 请稍等, 爬取的数量不小的</P>
             </div>
             {% endblock %}
             {% block content %}
@@ -74,6 +74,7 @@
                 <table class="table table-bordered">
                     <caption>以<strong><a href="http://acm.hdu.edu.cn">HDOJ</a></strong>为主</caption>
                     <tr class="btn-primary">
+                        <th class="text-center">排名</th>
                         <th class="text-center">用户名</th>
                         <th class="text-center">昵称</th>
                         <th class="text-center">HDOJ 总数</th>
@@ -81,20 +82,16 @@
                     </tr>
                     <!--先添加一组试试-->
                     <!--for user in users.items(), 还有当前用户凸显-->
-                    <tr>
-                        <td class="text-center"><a href="/homepage" alt="个人主页">935809546</a></td>
-                        <td class="text-center">Coco</td>
-                        <td class="text-center">10</td>
+                    <tr v-for="(obj, index) in users">
+                        <td class="text-center">{[ index+1 ]}</td>
+                        <td class="text-center"><a href="/homepage" alt="个人主页">{[ obj.user ]}</a></td>
+                        <td class="text-center">{[ obj.nick_name ]}</td>
+                        <td class="text-center">{[ obj.count ]}</td>
                         <td class="text-center content-td">
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width=200 height=20>
-                                <g transform="translate(0, 0)">
-                                    <rect x="20" y="0" width="10" height="10" style="fill:#197013;">
-                                        <title>2018-07-12 solve 10</title>
-                                    </rect>
-                                </g>
-                                <g transform="translate(13, 0)">
-                                    <rect x="19" y="0" width="10" height="10" style="fill:blue;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9">
-                                    <title>2018-07-13 solve 9</title>
+                                <g v-for="(value, key, _index) in obj.date_ps" transform="translate(13, 0)">
+                                    <rect :x="12*(_index+5)" y="5" width="10" height="10" :fill="color_map[value.length]">
+                                    <title>{[ key ]} solve {[ value.length ]}</title>
                                     </rect>
                                 </g>
                             </svg>
@@ -114,6 +111,7 @@
             <a href="https://github.com/stevenshuang"><i class="iconfont icon-Github">&#xea0a;</i>Coco</a>
         </div>
     </body>
+    <script type="text/javascript" src="http://cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
     <script>
         new Vue({
                 el: "#app",
@@ -122,18 +120,21 @@
                     nick_name: "",
                     //还要请求一个全员的做题信息, 就是用户信息, 请求5天的, 要分页显示
                     users: [],
+                    color_map: ['#ebedf0', '#9c6', '#9c3', '#693', '#090', '#090', '#090', '#090', '#090', '#090'],
                 },
                 delimiters: ['{[', ']}'],
                 mounted: function() {
                     var self = this;
                     $.ajax({
                            type: "GET",
-                           url: coco+"/data",
+                           url: coco+"/api/v1/users",
                            success: function(data) {
                                console.log(JSON.stringify(data))
                                self.id = data.id;
                                self.nick_name = data.nick_name;
                                console.log(JSON.stringify(self.id+self.nick_name));
+                               self.users = data.users
+                               console.log(JSON.stringify(self.users))
                            }.bind(this),
                            error: function(err) {
                                console.log(JSON.stringify(err));
