@@ -12,6 +12,14 @@
 
 ## 爬虫数据请见[hdoj爬虫](https://github.com/stevenshuang/spider/tree/master/hdoj)
 
+## 使用
+1. sudo python3 -m pip install pipenv
+2. git clone https://github.com/stevenshuang/SutAcmDRA.git
+3. 进入根目录, pipenv install 
+4. 配置config的数据库密码
+5. 尝试测试 python3 manage.py runserver
+6. 后续会完成docker一键部署
+
 ## 截图
 * ![api-date](./images/api-data.png)
 
