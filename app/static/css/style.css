@@ -1,6 +1,6 @@
 
 body {
-    background-color: #eee;
+    background-color: #fff;
 }
 
 .my-containder {
@@ -72,6 +72,11 @@ body {
 }
 
 .content-td{
-    width: 308px;
+    width: 200px;
     height: 20px;
+    text-align: center;
+}
+
+.content-td svg {
+    text-align: center;
 }
