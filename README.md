@@ -14,11 +14,13 @@
 
 ## 使用
 1. sudo python3 -m pip install pipenv
-2. git clone https://github.com/stevenshuang/SutAcmDRA.git
-3. 进入根目录, pipenv install 
-4. 配置config的数据库密码
-5. 尝试测试 python3 manage.py runserver
-6. 后续会完成docker一键部署
+2. 安装mongodb
+3. git clone https://github.com/stevenshuang/SutAcmDRA.git
+4. 进入根目录, pipenv install 
+5. 配置config的mysql数据库密码
+6. 获取爬虫数据见[HDOJ](https://github.com/stevenshuang/spider/tree/master/hdoj)
+7. 尝试测试 python3 manage.py runserver
+8. 后续会完成docker一键部署
 
 ## 截图
 * ![api-date](./images/api-data.png)
