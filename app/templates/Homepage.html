@@ -16,17 +16,20 @@
 <div class="row">
     <div class="col-md-4">
         <div>
-            <img src="../static/images/15040521.png" style="width: 200px; height: 200px; border: solid 2px #D3D3D3;" />
+            <img src="/static/{{ current_user.photo_path }}" style="width: 200px; height: 200px; border: solid 2px #D3D3D3;" />
         </div>
         <div>
-            <h2>{[ nick_name ]}</h2>
-            <p>{[ id ]}</p>
+            <h2>{{ current_user.student_id }}</h2>
+            <p>{{ current_user.hdoj_username }}</p>
             <hr style="border: solid 1px #D3D3D3; width: 50%; margin-left:0;" />
             <p>骚年留下QQ</p>
         </div>
     </div>
     <div class="col-md-8" style="border: solid 2px #D3D3D3;margin">
-        {% include './panel.html' %}
+        <p>等面试回来用echarts做一个图表吧.统计近一个月做题情况</P>
+        <p>那么, 本项目在面试之前就到此结束, 我去抓信息</p>
+        <p>期待面试, 加油吧</p>
+        <p>2018-07-23</p>
     </div>
 </div>
 {% endblock %}
@@ -35,19 +38,21 @@
     new Vue({
             el: "#app",
             data: {
-                id: "",
                 nick_name: "",
+                hdoj_username: "",
                 date_ps: "",    // 做题的分布数据
+
             },
             delimiters: ['{[', ']}'],
             mounted: function(){
                 var self = this;
                 $.ajax({
-                       type: "GET",
-                       url: "http://localhost:5000/data",
+                       type: "get",
+                       url: coco+"/api/v1/user",
                        success: function(data){
-                            self.id = data.id;
-                            self.nick_name = data.nick_name;
+                            self.nick_name = data.user_info.nick_name;
+                            self.hdoj_username = data.user_info.user;
+                            self.date_ps = data.user_info.date_ps;
                        },
                        error: function(err){
                             console.log(JSON.stringify(err));
